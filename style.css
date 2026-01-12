@@ -646,6 +646,18 @@ footer {
     background: var(--primary);
     transform: translateY(-3px);
 }
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* optional: makes it white */
+}
 
 .copyright {
     text-align: center;
@@ -680,12 +692,6 @@ footer {
     .stats {
         justify-content: space-around;
     }
-    .social-icon-img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    }
-
 }
 
 @media (max-width: 768px) {
