@@ -680,6 +680,12 @@ footer {
     .stats {
         justify-content: space-around;
     }
+    .social-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    }
+
 }
 
 @media (max-width: 768px) {
