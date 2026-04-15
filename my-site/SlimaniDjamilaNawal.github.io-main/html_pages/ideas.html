@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💡 Ideas & Projects | Djamila Nawal Slimani</title>
+  <meta name="description" content="Technical tutorials, tools, and concepts by Djamila Nawal Slimani">
+  <style>
+    :root {
+      --bg: #0f172a; --card: #1e293b; --text: #f8fafc; --muted: #94a3b8;
+      --accent: #38bdf8; --accent-hover: #0ea5e9; --border: #334155;
+      --success: #22c55e; --warning: #f59e0b; --info: #6366f1;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; padding: 2rem 1rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    
+    /* Header */
+    header { text-align: center; padding: 2rem 0 3rem; }
+    header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      background: linear-gradient(135deg, var(--accent), #818cf8);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    header p { color: var(--muted); max-width: 600px; margin: 0 auto; }
+    
+    /* Filters */
+    .filters {
+      display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0.5rem; margin-bottom: 2rem;
+    }
+    .filter-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); padding: 0.4rem 0.9rem;
+      border-radius: 8px; cursor: pointer; transition: 0.2s;
+      font-size: 0.9rem;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--accent); color: var(--accent);
+      background: rgba(56,189,248,0.08);
+    }
+    
+    /* Grid */
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .card.hidden { display: none; }
+    .card:hover {
+      transform: translateY(-4px); border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(56,189,248,0.12);
+    }
+    
+    /* Card Preview */
+    .preview {
+      height: 120px; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-bottom: 1px solid var(--border); position: relative;
+    }
+    .preview-icon { font-size: 2rem; }
+    .badge {
+      position: absolute; top: 0.6rem; right: 0.6rem;
+      padding: 0.15rem 0.5rem; border-radius: 5px;
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+    }
+    .badge.complete { background: var(--success); color: #fff; }
+    .badge.wip { background: #64748b; color: #fff; }
+    .badge.tutorial { background: var(--info); color: #fff; }
+    
+    /* Card Content */
+    .content { padding: 1.1rem; flex: 1; display: flex; flex-direction: column; }
+    .content h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+    .content p { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.8rem; flex: 1; }
+    
+    /* Tags */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.9rem; }
+    .tag {
+      background: rgba(56,189,248,0.12); color: var(--accent);
+      padding: 0.15rem 0.45rem; border-radius: 4px;
+      font-size: 0.7rem; font-weight: 500;
+      border: 1px solid rgba(56,189,248,0.25);
+    }
+    
+    /* Buttons */
+    .actions { display: flex; gap: 0.6rem; margin-top: auto; }
+    .btn {
+      flex: 1; padding: 0.5rem; border-radius: 7px;
+      text-decoration: none; font-size: 0.8rem; font-weight: 500;
+      text-align: center; transition: 0.2s; display: inline-flex;
+      align-items: center; justify-content: center; gap: 0.3rem;
+    }
+    .btn-primary { background: var(--accent); color: #0f172a; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-outline {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    
+    /* Footer nav */
+    .back-link {
+      text-align: center; margin-top: 3rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .back-link a {
+      color: var(--accent); text-decoration: none; font-weight: 500;
+    }
+    .back-link a:hover { text-decoration: underline; }
+    
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      body { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>💡 Ideas & Projects</h1>
+      <p>Technical tutorials, tools, and concepts I build, document, and share — all tested on Ubuntu.</p>
+    </header>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+      <button class="filter-btn" data-filter="tool">Tools</button>
+      <button class="filter-btn" data-filter="complete">Completed</button>
+      <button class="filter-btn" data-filter="wip">In Progress</button>
+    </div>
+
+    <div class="grid">
+      <!-- ✅ The 300MB Protocol (Your FFmpeg Course) -->
+      <article class="card" data-category="tutorial tool complete">
+        <div class="preview">
+          <span class="badge complete">Complete</span>
+          <div class="preview-icon">🎬</div>
+        </div>
+        <div class="content">
+          <h3>The 300MB Protocol</h3>
+          <p>Compress 1.6GB camera footage to exactly 300MB using FFmpeg on Ubuntu 24.04. Perfect for slow internet & Google Drive uploads.</p>
+          <div class="tags">
+            <span class="tag">FFmpeg</span>
+            <span class="tag">Ubuntu 24.04</span>
+            <span class="tag">Bash</span>
+            <span class="tag">Video Encoding</span>
+          </div>
+          <div class="actions">
+            <a href="The_300MB_Protocol.html" class="btn btn-primary">View Course</a>
+            <a href="https://github.com/SlimaniDjamilaNawal" target="_blank" class="btn btn-outline">Source</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 🐳 Docker Update Helper -->
+      <article class="card" data-category="tool tutorial complete">
+        <div class="preview">
+          <span class="badge complete">Complete</span>
+          <div class="preview-icon">🐳</div>
+        </div>
+        <div class="content">
+          <h3>Docker Auto-Update Script</h3>
+          <p>One-command script to safely update Docker containers on Ubuntu without downtime. Includes rollback support.</p>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Bash</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">Ubuntu</span>
+          </div>
+          <div class="actions">
+            <a href="docker_update.html" class="btn btn-primary">Read Guide</a>
+            <a href="#" class="btn btn-outline">Code</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 🔋 Prevent Ubuntu Sleep -->
+      <article class="card" data-category="tutorial complete">
+        <div class="preview">
+          <span class="badge complete">Complete</span>
+          <div class="preview-icon">🔋</div>
+        </div>
+        <div class="content">
+          <h3>Prevent Ubuntu Power-Off</h3>
+          <p>Keep your Ubuntu laptop awake during long tasks (renders, uploads, training) without changing system settings permanently.</p>
+          <div class="tags">
+            <span class="tag">Ubuntu</span>
+            <span class="tag">Power Management</span>
+            <span class="tag">Systemd</span>
+          </div>
+          <div class="actions">
+            <a href="Branch · Branch · Prevent_Ubuntu_Power_Off.html" class="btn btn-primary">View Fix</a>
+            <a href="#" class="btn btn-outline">Snippet</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 📡 Bluetooth Settings Helper -->
+      <article class="card" data-category="tool wip">
+        <div class="preview">
+          <span class="badge wip">In Progress</span>
+          <div class="preview-icon">📡</div>
+        </div>
+        <div class="content">
+          <h3>Bluetooth Troubleshooter</h3>
+          <p>Interactive guide to fix common Bluetooth pairing issues on Ubuntu laptops (Dell Latitude, etc.).</p>
+          <div class="tags">
+            <span class="tag">Ubuntu</span>
+            <span class="tag">Bluetooth</span>
+            <span class="tag">Hardware</span>
+          </div>
+          <div class="actions">
+            <a href="Bluetooth_Setting.html" class="btn btn-primary">Open Guide</a>
+            <a href="#" class="btn btn-outline">Preview</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 🧠 Future Idea: AI CLI -->
+      <article class="card" data-category="concept wip">
+        <div class="preview">
+          <span class="badge wip">In Progress</span>
+          <div class="preview-icon">🤖</div>
+        </div>
+        <div class="content">
+          <h3>AI Terminal Assistant</h3>
+          <p>A CLI tool that converts plain English to Linux commands using local LLMs. Privacy-first, offline-capable.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">AI</span>
+            <span class="tag">CLI</span>
+            <span class="tag">Privacy</span>
+          </div>
+          <div class="actions">
+            <a href="#" class="btn btn-primary">Concept</a>
+            <a href="#" class="btn btn-outline">Roadmap</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="back-link">
+      <a href="../index.html">← Back to Portfolio Home</a>
+    </div>
+  </div>
+
+  <script>
+    // Category filtering
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.card').forEach(card => {
+          const cats = card.dataset.category.split(' ');
+          card.classList.toggle('hidden', filter !== 'all' && !cats.includes(filter));
+        });
+      });
+    });
+
+    // Add click-to-copy for code snippets (future enhancement)
+    document.querySelectorAll('.btn-outline').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if(btn.href === window.location.href + '#') {
+          e.preventDefault();
+          alert('Source code will be available soon on GitHub!');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
