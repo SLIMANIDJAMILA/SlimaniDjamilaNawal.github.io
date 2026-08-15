@@ -1,13 +1,190 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Personal Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slimani Djamila Nawal - Portfolio</title>
+    <!-- This forces a backup redirect after 5 seconds if JavaScript is disabled -->
+    <meta http-equiv="refresh" content="2; url=https://slimanidjamilanawal-github-io.pages.dev/">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: var(--shadow-lg);
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+        /* ── Mascot + speech bubble ── */
+        .mascot-area { position: relative; display: inline-block; margin-bottom: 1.25rem; }
+        .mascot {
+            width: 170px;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-10px); }
+        }
+        .speech-bubble {
+            position: absolute;
+            top: -6px;
+            right: -84px;
+            background: var(--primary);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 8px 18px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            animation: pop 1.6s ease-in-out infinite;
+            white-space: nowrap;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 22px;
+            border-width: 8px 8px 0 0;
+            border-style: solid;
+            border-color: var(--primary) transparent transparent transparent;
+        }
+        @keyframes pop {
+            0%, 100% { transform: scale(1); }
+            50%      { transform: scale(1.08); }
+        }
+        /* ── Text & buttons (same style as the main page) ── */
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border-radius: 30px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--darker);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .name-highlight {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle { color: var(--gray); font-size: 1.1rem; margin-bottom: 1.25rem; }
+        p { color: var(--gray); margin-bottom: 1rem; }
+        a { color: var(--primary); text-decoration: none; font-weight: 600; transition: var(--transition); word-break: break-all; }
+        a:hover { color: var(--primary-dark); text-decoration: underline; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            margin: 0.75rem 0 1.25rem;
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.35);
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .countdown {
+            display: inline-block;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--dark);
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+        .countdown span { color: var(--primary); font-weight: 800; }
+        .fallback { margin-top: 1rem; font-size: 0.9rem; color: var(--gray); }
+        @media (max-width: 520px) {
+            .container { padding: 2.25rem 1.25rem; }
+            h1 { font-size: 1.8rem; }
+            .mascot { width: 130px; }
+            .speech-bubble { right: -60px; font-size: 0.9rem; padding: 6px 14px; }
+        }
+    </style>
 </head>
 <body>
-  <h1>Hi — I’m Slimani Djamila Nawal</h1>
-  <p>Welcome to my personal website.</p>
+    <div class="container">
+        <!-- Mascot saying hi (image saved in the SAME folder as this file) -->
+        <div class="mascot-area">
+            <img src="Mascot.png" alt="TechBySDN mascot waving" class="mascot">
+            <div class="speech-bubble">Hi! 👋</div>
+        </div>
+
+        <span class="hero-badge">Master's Graduate & Full-Stack Developer</span>
+        <h1>Hello! Welcome to<br><span class="name-highlight">My Portfolio</span></h1>
+        <p class="subtitle">My website has moved to a new home to give you a faster and better experience.</p>
+        <p>Please update your bookmarks to my new official link:<br>
+            <a href="https://slimanidjamilanawal-github-io.pages.dev/">slimanidjamilanawal-github-io.pages.dev</a>
+        </p>
+
+        <a href="https://slimanidjamilanawal-github-io.pages.dev/" class="btn">View My Work →</a>
+
+        <div>
+            <div class="countdown">⏳ Redirecting you in <span id="timer">5</span> seconds...</div>
+        </div>
+
+        <p class="fallback">
+            <a href="https://slimanidjamilanawal-github-io.pages.dev/">Click here if you aren't redirected automatically</a>
+        </p>
+    </div>
+
+    <script>
+        // Counts down from 5 to 0 then redirects smoothly
+        let timeleft = 5;
+        let timerId = setInterval(function () {
+            timeleft--;
+            document.getElementById("timer").textContent = timeleft;
+            if (timeleft <= 0) {
+                clearInterval(timerId);
+                window.location.href = "https://slimanidjamilanawal-github-io.pages.dev/";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
-
